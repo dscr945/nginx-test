@@ -6,6 +6,7 @@ FROM ubuntu:12.04
 MAINTAINER Rmao
 #copy sources to /etc/apt/sources.list
 COPY sources.list /etc/apt/sources.list
+COPY index.html /usr/share/nginx/www/index.html
 #update sources
 RUN apt-get update
 #install nginx
