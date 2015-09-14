@@ -6,13 +6,11 @@ FROM ubuntu:12.04
 MAINTAINER Rmao
 #copy sources to /etc/apt/sources.list
 COPY sources.list /etc/apt/sources.list
-COPY index.html /usr/share/nginx/www/index.html
 #update sources
 RUN apt-get update
 #install nginx
 RUN apt-get install -y nginx && \
     rm -rf /var/lib/apt/lists/*
-
 #rm nginx.conf
 #RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
 #cp new nginx.conf
@@ -22,6 +20,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 #use 80 and 443 port
 EXPOSE 80
+#change wlecome page
+COPY index.html /usr/share/nginx/www/index.html
 #set volume
 #VOLUME ["/var/www/html"]
 #run nginx server
